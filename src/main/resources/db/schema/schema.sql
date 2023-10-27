@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    phone_num CHAR(11) NOT NULL,
+    CONSTRAINT users_pk PRIMARY KEY(id)
+);

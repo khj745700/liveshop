@@ -1,9 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/liveshop
 
+  sql:
+    init:
+      schema-locations: classpath*:db/schema/schema.sql
+      mode: ALWAYS
 
-profiles:
-  include: secret
-
+  profiles:
+    include: secret
