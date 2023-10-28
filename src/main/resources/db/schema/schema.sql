@@ -5,5 +5,6 @@ CREATE TABLE users (
     username VARCHAR(20) NOT NULL,
     password VARCHAR(50) NOT NULL,
     phone_num CHAR(11) NOT NULL,
+    nickname VARCHAR(20) NOT NULL,
     CONSTRAINT users_pk PRIMARY KEY(id)
 );
