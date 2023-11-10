@@ -13,6 +13,7 @@
 
 
 ## 기술적 Issue 해결 과정
+<a href="https://codingmylife.tistory.com/41">[#1] 서버가 여러 대 일때 로그인 세션을 관리 하기 위한 방법들 </a>
 
 
 
