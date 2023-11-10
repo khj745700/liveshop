@@ -12,7 +12,7 @@ public interface UserMapper {
     @Insert("INSERT INTO users (username, password, nickname, phone_num) VALUES (#{username}, #{password}, #{nickname}, #{phoneNum}) ")
     void insertUser(User user);
 
-    @Select("SELECT id, password, phoneNum, username, nickname FROM users WHERE id = #{id}")
+    @Select("SELECT id, password, phone_num, username, nickname FROM users WHERE id = #{id}")
     User findById(@Param("id") Integer id);
 
     @Select("SELECT EXISTS(SELECT 1 FROM users WHERE username = #{username}) as exist")
@@ -20,4 +20,7 @@ public interface UserMapper {
 
     @Select("SELECT EXISTS(SELECT 1 FROM users WHERE nickname = #{nickname}) as exist")
     Boolean existByNickname(@Param("nickname") String nickname);
+
+    @Select("SELECT id, password, nickname, username, phone_num as phoneNum FROM users WHERE username=#{username}")
+    User findByUsername(@Param("username")String username);
 }
