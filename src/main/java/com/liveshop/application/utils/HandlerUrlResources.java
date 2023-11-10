@@ -28,8 +28,6 @@ public class HandlerUrlResources {
 
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
         for (Map.Entry<RequestMappingInfo, HandlerMethod> requestMappingInfoHandlerMethodEntry : handlerMethods.entrySet()) {
-            String base = requestMappingInfoHandlerMethodEntry.getKey().toString();
-            log.info(base);
             String baseUrl = requestMappingInfoHandlerMethodEntry.getKey().getActivePatternsCondition().toString();
              List<String> resources = Arrays.stream(baseUrl.substring(2, baseUrl.length() - 1)
                      .split("/"))
