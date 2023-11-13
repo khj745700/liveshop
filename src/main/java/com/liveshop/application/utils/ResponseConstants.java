@@ -1,5 +1,7 @@
 package com.liveshop.application.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
  *     따라서 상수로 응답객체를 미리 생성해놓음으로서 메모리 소모를 최소화 하기 위해 작성하였습니다.
  * </p>
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResponseConstants {
     /** Http Status Code = 200 OK */
     public static final ResponseEntity<Void> OK = new ResponseEntity<>(HttpStatus.OK);
