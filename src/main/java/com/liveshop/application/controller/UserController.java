@@ -3,9 +3,8 @@ package com.liveshop.application.controller;
 import com.liveshop.application.dto.UserDto;
 import com.liveshop.application.dto.request.LoginRequest;
 import com.liveshop.application.exception.SignupException;
+import com.liveshop.application.service.LoginService;
 import com.liveshop.application.service.UserService;
-import com.liveshop.application.utils.ResponseConstants;
-import com.liveshop.application.utils.SessionConstants;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +24,7 @@ import static com.liveshop.application.utils.ResponseConstants.*;
 public class UserController {
 
     private final UserService userService;
+    private final LoginService loginService;
 
     @GetMapping("/nickname/{nickname}")
     @ResponseBody
@@ -58,9 +58,8 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<Void> login(@RequestBody LoginRequest loginRequest, @NonNull HttpSession session) {
-        if(userService.login(loginRequest)){
-            session.setAttribute(SessionConstants.SESSION_NAME, loginRequest.getUsername());
-            log.trace("create session: {}", session.getAttribute(SessionConstants.SESSION_NAME));
+        if(loginService.login(loginRequest)){
+
             return ACCEPTED;
         }
         return UNAUTHORIZED;
@@ -69,8 +68,7 @@ public class UserController {
     @DeleteMapping("/login")
     @ResponseBody
     public ResponseEntity<Void> logout(@NonNull HttpSession session) {
-            log.trace("remove session: {}", session.getAttribute(SessionConstants.SESSION_NAME));
-            session.removeAttribute(SessionConstants.SESSION_NAME);
+            loginService.logout();
             return OK;
     }
 }

@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -43,14 +42,6 @@ public class UserService {
     }
 
 
-    @Transactional(readOnly = true)
-    public boolean login(LoginRequest loginRequest) {
-        Optional<User> optionalUser = Optional.ofNullable(userMapper.findByUsername(loginRequest.getUsername()));
-        if(optionalUser.isEmpty()){
-            return false;
-        }
-        return optionalUser.get().getPassword().equals(loginRequest.getPassword());
-    }
 
     private void validateSignup(UserDto signupUser) {
         if(isValidUsername(signupUser.getUsername()) || isValidNickname(signupUser.getNickname())) { // 단축평가.
